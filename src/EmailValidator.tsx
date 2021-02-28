@@ -20,7 +20,7 @@ const EmailValidator = () => {
             "headers":{
                 "content-type":  "application/octet-stream",
                 "x-rapidapi-host": "email-checker.p.rapidapi.com",
-                "x-rapidapi-key": "0166666879msh1723f614ce6e4ebp1a0cc2jsn2f459931687b"
+                "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_KEY
             }, "params": {
                 "email": encodeURI(email)
          
