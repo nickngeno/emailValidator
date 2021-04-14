@@ -7,15 +7,14 @@ interface Props  {
 
 }
 
-const ShowValidation: React.FC<Props> = (props) => {
+const ShowValidation: React.FC<Props> = ({status, reason, show}) => {
+    console.log({status,reason,show})
     return (
         <div>
-            {props.status === 'valid' ?
-            <p className="validation valid">Valid!</p>
-            :<p className="validation invalid">Invalid</p>}
-            {props.show ?
-            props.reason
-            : null}
+            {status === 'valid' ?
+            <p className="validation status === 'valid' ?">Valid!</p>
+            :status === 'invalid' ? <p className="validation invalid">Invalid!</p> : ""}
+            {show ? reason : null}
         </div>
     )
 }
