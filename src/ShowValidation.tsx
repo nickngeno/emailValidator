@@ -1,19 +1,17 @@
 import React from 'react'
 
-interface Props  {
+interface Props {
     status: string;
-    reason:string;
-    show:boolean;
-
+    reason: string;
+    show: boolean;
 }
 
-const ShowValidation: React.FC<Props> = ({status, reason, show}) => {
-    console.log({status,reason,show})
+const ShowValidation:React.FC<Props> = ({ status, reason, show }) => {
     return (
         <div>
             {status === 'valid' ?
-            <p className="validation status === 'valid' ?">Valid!</p>
-            :status === 'invalid' ? <p className="validation invalid">Invalid!</p> : ""}
+                <p className="validation valid">Valid!</p>
+                : status === 'invalid' ? <p className="validation invalid">Invalid!</p> : ""}
             {show ? reason : null}
         </div>
     )

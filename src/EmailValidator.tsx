@@ -7,12 +7,13 @@ import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap'
 
 const EmailValidator = () => {
 
-    const [email, setEmail] = React.useState<string>("");
-    const [emailstatus, setEmailstatus] = React.useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [emailstatus, setEmailstatus] = useState<string>("");
     const [validationReason, setValidationReason] = useState<string>('');
     const [showreason, setShowreason] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 
+    const API_ = "0166666879msh1723f614ce6e4ebp1a0cc2jsn2f459931687b"
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
@@ -24,7 +25,7 @@ const EmailValidator = () => {
             "headers": {
                 "content-type": "application/octet-stream",
                 "x-rapidapi-host": "email-checker.p.rapidapi.com",
-                "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_KEY
+                "x-rapidapi-key": API_
             },
             "params": {
                 "email": encodeURI(email)
@@ -32,7 +33,6 @@ const EmailValidator = () => {
             }
         })
             .then(({ data }) => {
-                console.log(data)
                 setEmailstatus(data.status);
                 setValidationReason(data.reason)
                 setLoading(false)
@@ -41,8 +41,8 @@ const EmailValidator = () => {
             .catch((error) => {
                 console.log(error)
             })
-
     }
+    // console.log(email.length !== 0)
 
     return (
         <Container className="content-wrapper">
@@ -80,7 +80,7 @@ const EmailValidator = () => {
 
                     </Form.Group>
                 </fieldset>
-                {loading ? <Button variant="primary" disabled>
+                {loading ? (<Button variant="primary" disabled>
                     <Spinner
                         as="span"
                         animation="border"
@@ -88,8 +88,9 @@ const EmailValidator = () => {
                         role="status"
                         aria-hidden="true"
                     />
-                   Loading...
-                </Button> : <Button variant="primary" type="submit" >Check</Button>}
+                    Checking...
+                </Button>) :
+                email.length !== 0 ? (<Button variant="primary" type="submit" >Check</Button>) : (<Button variant="primary" type="submit" disabled >Check</Button>)}
             </Form>
             <ShowValidation status={emailstatus} reason={validationReason} show={showreason} />
         </Container>

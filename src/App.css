@@ -13,14 +13,6 @@ body{
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .content-wrapper{
   background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
   border-radius: 20px;
